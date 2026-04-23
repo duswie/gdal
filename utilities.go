@@ -51,6 +51,9 @@ func Info(sourceDS Dataset, options []string) string {
 }
 
 func BuildVRT(dstDS string, sourceDS []Dataset, srcDSFilePath, options []string) (Dataset, error) {
+	if len(sourceDS) == 0 {
+		return Dataset{}, fmt.Errorf("BuildVRT: sourceDS must not be empty")
+	}
 	if dstDS == "" {
 		dstDS = "MEM:::"
 		if !stringArrayContains(options, "-of") {
@@ -103,6 +106,9 @@ func BuildVRT(dstDS string, sourceDS []Dataset, srcDSFilePath, options []string)
 }
 
 func Warp(dstDS string, destDS *Dataset, sourceDS []Dataset, options []string) (Dataset, error) {
+	if len(sourceDS) == 0 {
+		return Dataset{}, fmt.Errorf("Warp: sourceDS must not be empty")
+	}
 	if dstDS == "" && destDS == nil {
 		dstDS = "MEM:::"
 		if !stringArrayContains(options, "-of") {
@@ -176,6 +182,9 @@ func Translate(dstDS string, sourceDS Dataset, options []string) (Dataset, error
 }
 
 func VectorTranslate(dstDS string, sourceDS []Dataset, options []string) (Dataset, error) {
+	if len(sourceDS) == 0 {
+		return Dataset{}, fmt.Errorf("VectorTranslate: sourceDS must not be empty")
+	}
 	if dstDS == "" {
 		dstDS = "MEM:::"
 		if !stringArrayContains(options, "-f") {
