@@ -228,7 +228,7 @@ const (
 
 // Get data type size in bits.
 func (dataType DataType) Size() int {
-	return int(C.GDALGetDataTypeSize(C.GDALDataType(dataType)))
+	return int(C.goGDALGetDataTypeSizeCompat(C.GDALDataType(dataType)))
 }
 
 func (dataType DataType) IsComplex() int {
